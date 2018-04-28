@@ -18,6 +18,20 @@ export function Get(url, data) {
         })
       })
     }
+    export function GetInfo(url, id,data) {
+      return new Promise((resolve, reject) => {
+        axios.get(url+id, {
+          params: data
+        }).then((res) => {
+          if (res) {
+            //成功回调
+            resolve(res);
+          }
+        }).catch((error) => {
+          reject(error);
+        })
+      })
+    }
     export function  Post(url, data) {
       return new Promise((resolve, reject) => {
         axios.post(url, qs.stringify(data), {

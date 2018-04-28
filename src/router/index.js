@@ -14,12 +14,12 @@ export default new Router({
       component: main
     },
     {
-      path: '/Book',
+      path: '/Book/:id',
       name: 'book',
       component: book
     },
     {
-      path: '/Movie',
+      path: '/Movie/:id',
       name: 'movie',
       component: movie
     },
