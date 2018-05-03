@@ -4,8 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from  './store'
-import { Button, Row, Col,Swipe,SwipeItem,search,cellGroup,cell,Lazyload } from 'vant'
-Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(search).use(cell).use(cellGroup).use(Lazyload);
+import { Button, Row, Col,Swipe,SwipeItem,search,cellGroup,cell,Lazyload,icon,List} from 'vant'
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(search).use(cell).use(cellGroup).use(Lazyload).use(icon).use(List);
 
 Vue.config.productionTip = false
 

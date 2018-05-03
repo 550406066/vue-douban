@@ -4,6 +4,8 @@ import topNav from '@/components/topNav'
 import main from '@/components/main'
 import movie from '@/components/movie'
 import book from '@/components/book'
+import more from '@/components/more'
+import search from '@/components/searchPage'
 Vue.use(Router)
 
 export default new Router({
@@ -23,6 +25,15 @@ export default new Router({
       name: 'movie',
       component: movie
     },
-
+    {
+      path: '/search/:q',
+      name: 'search',
+      component: search
+    },
+    {
+      path: '/more',
+      name: 'more',
+      component: more
+    },
   ]
 })

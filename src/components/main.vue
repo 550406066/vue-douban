@@ -3,7 +3,7 @@
         <topNav/>
         <van-row class="top-tip">
           <van-col span="8">影院热映</van-col>
-          <van-col span="4" offset="12"  class="moreMovies"><span @click="moreMovies"> 更多</span></van-col>
+          <van-col span="4" offset="12"  class="moreMovies"><span @click="moreMovies('hotMovies')"> 更多</span></van-col>
         </van-row>
       <div class="movies-info">
       
@@ -18,10 +18,9 @@
           </div>
         <van-row class="top-tip">
           <van-col span="8">新片速递</van-col>
-          <van-col span="4" offset="12"  class="moreMovies"><span @click="moreMovies"> 更多</span></van-col>
+          <van-col span="4" offset="12"  class="moreMovies"><span @click="moreMovies('newMovies')"> 更多</span></van-col>
         </van-row>
           <div class="movies-info">
-  
             <div v-for="(item,index) in newMovies" :key="index" class="movies-item" >
                 <router-link :to="'movie/' + item.id" append>
                 <img :src="item.images.small" v-lazy="item.images.small" class="movies-item-img">
@@ -33,7 +32,7 @@
           </div>
           <van-row class="top-tip">
           <van-col span="8">评分排行榜</van-col>
-          <van-col span="4" offset="12"  class="moreMovies"><span @click="moreMovies"> 更多</span></van-col>
+          <van-col span="4" offset="12"  class="moreMovies"><span @click="moreMovies('topMovies')"> 更多</span></van-col>
         </van-row>
           <div class="movies-info">
          
@@ -50,7 +49,7 @@
           <!-- 图书部分 -->
           <van-row class="top-tip">
           <van-col span="8">虚幻类</van-col>
-          <van-col span="4" offset="12"  class="moreMovies"><span @click.native="morebooks"> 更多</span></van-col>
+          <van-col span="4" offset="12"  class="moreMovies"><span @click="morebooks('novel')"> 更多</span></van-col>
         </van-row>
           <div class="movies-info">
             <div v-for="(item,index) in novel" :key="index" class="movies-item" >
@@ -64,7 +63,7 @@
        
           <van-row class="top-tip">
           <van-col span="8">非虚幻类</van-col>
-          <van-col span="4" offset="12"  class="moreMovies"><span @click.native="morebooks"> 更多</span></van-col>
+          <van-col span="4" offset="12"  class="moreMovies"><span @click="morebooks('reality')"> 更多</span></van-col>
         </van-row>
           <div class="movies-info">
             <div v-for="(item,index) in reality" :key="index" class="movies-item" >
@@ -79,7 +78,7 @@
 
           <van-row class="top-tip">
           <van-col span="8">旅行·远方</van-col>
-          <van-col span="4" offset="12"  class="moreMovies"><span @click.native="morebooks"> 更多</span></van-col>
+          <van-col span="4" offset="12"  class="moreMovies"><span @click="morebooks('travel')"> 更多</span></van-col>
         </van-row>
           <div class="movies-info">
             <div v-for="(item,index) in travel" :key="index" class="movies-item" >
@@ -104,17 +103,17 @@ export default {
     topMovies: [],
     novel: [],
     reality: [],
-    travel: []
+    travel: [],
+    count:10
   },
   mounted: function() {
-    console.log(this.hotMovies);
     if (this.hotMovies.length !== 0) {
     } else {
-      this.$store.dispatch("getMovie", { count: 8 });
+      this.$store.dispatch("getMovie", { count: this.count });
     }
     if (this.novel.length !== 0) {
     } else {
-      this.$store.dispatch("getBooks", { count: 8 });
+      this.$store.dispatch("getBooks", { count: this.count  });
     }
   },
   // computed:mapState(["test"]),
@@ -126,14 +125,15 @@ export default {
       novel: state => state.book.novel,
       reality: state => state.book.reality,
       travel: state => state.book.travel
-    }),
-
+    })
   },
   methods: {
-    moreMovies() {
+    moreMovies(type) {
+      this.$router.push({ name: "more", params: { type: type, from: 1 } });
       console.log("点击更多");
     },
-    morebooks() {
+    morebooks(type) {
+      this.$router.push({ name: "more", params: { type: type, from: 2 } });
       console.log("点击更多");
     }
   },

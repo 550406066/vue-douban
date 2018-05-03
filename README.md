@@ -1,7 +1,18 @@
 # daily-news
 
-> A Vue.js project
+> 本项目使用豆瓣提供的接口完成了基本的豆瓣手机端常见功能，可以进行搜索和查看详情，以及图片滚动加载
 
+豆瓣提供的接口：https://developers.douban.com/wiki/?title=guide
+## 项目中使用的技术
+vue，vue-router，vuex，axios，vant
+#项目页面：
+![](https://i.imgur.com/fFEYkvP.png)
+![](https://i.imgur.com/WRbMRVW.png)
+![](https://i.imgur.com/AV9Wem1.png)
+![](https://i.imgur.com/va2wR6R.png)
+![](https://i.imgur.com/GIpqkP4.png)
+![](https://i.imgur.com/EqNnDCb.png)
+![](https://i.imgur.com/f1FLKf0.png)
 ## Build Setup
 
 ``` bash

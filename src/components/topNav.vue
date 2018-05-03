@@ -1,11 +1,11 @@
 <template>
   <div class="search-bar">
 <van-row>
-  <van-col span="4" class="top-nav-option" >豆瓣</van-col>
+  <van-col span="4" class="top-nav-option" @click.native="goMain">豆瓣</van-col>
   <van-col span="12" class="search-option"><van-search placeholder="请输入搜索名称" class="top-nav-search" v-model="searchValue"   @search="onSearch"
     @cancel="onCancel" /></van-col>
-  <van-col span="4"  class="top-nav-option" @click.native="goMovie">电影</van-col>
-  <van-col span="4"  class="top-nav-option" @click.native="goBook">图书</van-col>
+  <van-col span="4"  class="top-nav-option" @click.native="goMain">电影</van-col>
+  <van-col span="4"  class="top-nav-option" @click.native="goMain">图书</van-col>
 
 </van-row>
   </div>
@@ -15,23 +15,28 @@
 export default {
   data() {
     return {
-      searchValue: ""
+      searchValue: ""||localStorage.searchValue,
+      count: 5
     };
   },
   methods: {
     onSearch() {
-      console.log(this.searchValue);
+      localStorage.searchValue=this.searchValue
+      this.$store.dispatch("getSearchInfo", {
+        q: this.searchValue,
+        count: this.count
+      });
+      this.$router.push({ name: "search", params: { q: this.searchValue } });
+ 
     },
     onCancel() {
-      console.log(this.searchValue);
+        localStorage.searchValue=this.searchValue
+   
     },
-    goMovie() {
-      console.log("Movie");
-      this.$router.push({ path: "Movie" });
-    },
-    goBook() {
-      console.log("book");
-      this.$router.push({ path: "Book" });
+    goMain() {
+      if (this.$route.path !== "/") {
+        this.$router.push({ path: "/" });
+      }
     }
   }
 };
@@ -43,10 +48,10 @@ export default {
   color: #00b600;
   line-height: 3rem;
   font-size: 1rem;
-  border-bottom: 1px solid #cccccc
+  border-bottom: 1px solid #cccccc;
 }
-.search-option{
-  margin-top: 0.4rem
+.search-option {
+  margin-top: 0.4rem;
 }
 .top-nav-search {
   background-color: #ffffff !important;

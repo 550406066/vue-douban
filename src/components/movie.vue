@@ -1,7 +1,7 @@
 <template>
     <div>
       <top-nav></top-nav>
-      <module :moduleInfo="movieInfo"></module>  
+      <module :moduleInfo="movieInfo" type="movie"></module>  
 
     </div>
 </template>
@@ -26,7 +26,6 @@ export default {
   computed: mapState({
     // 箭头函数可使代码更简练
     movieInfo: state => state.search.movieInfo,
-
     // 传字符串参数 'count' 等同于 `state => state.count`
   }),
   components: {

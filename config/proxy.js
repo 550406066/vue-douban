@@ -18,6 +18,7 @@ module.exports={
     pathRewrite: {
     }
   },
+
   '/book/search': {
     target: targetUrl,
     changeOrigin: true,
@@ -30,10 +31,16 @@ module.exports={
     pathRewrite: {
     }
   },
-  '/book/subject/':{
+  '/book/':{
     target: targetUrl,
     changeOrigin: true,
     pathRewrite: {
     }
-  }
+  },
+  '/movie/search':{
+    target: targetUrl,
+    changeOrigin: true,
+    pathRewrite: {
+    }
+  },
 }
